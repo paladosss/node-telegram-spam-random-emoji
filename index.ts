@@ -20,10 +20,10 @@ app.get('/', (req: any, res: any) => {
   res.send({ status: 'I am alive!' });
 });
 
-tgBot.onText(/\/status/, (msg: Message) => {
+tgBot.onText(/\/status/, async (msg: Message) => {
   console.log('msg', msg);
 
-  tgBot.sendMessage(msg.chat.id, 'I am alive!');
+  await tgBot.sendMessage(msg.chat.id, 'I am alive!');
 });
 
 tgBot.onText(/\/kill/, async (msg: Message) => {
@@ -44,7 +44,7 @@ tgBot.onText(/\/kill/, async (msg: Message) => {
           await delay(3100);
         }
       } else {
-        tgBot.sendMessage(msg.chat.id, '/kill @username 10');
+        await tgBot.sendMessage(msg.chat.id, '/kill @username 10');
       }
     }
   }
